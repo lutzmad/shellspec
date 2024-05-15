@@ -21,9 +21,19 @@ read_time_log() {
   [ -r "$2" ] || return 1
   # shellcheck disable=SC2034
   while IFS= read -r line; do
-    case $line in (real[\ $TAB]*|user[\ $TAB]*|sys[\ $TAB]*)
-      case ${line##*[ $TAB]} in (*[!0-9.]*) continue; esac
-      eval "$1_${line%%[ $TAB]*}=\"\${line##*[ \$TAB]}\""
+    case $line in ([Rr]eal[\ $TAB]*|[Uu]ser[\ $TAB]*|[Ss]ys[\ $TAB]*|[Ss]ystem[\ $TAB]*)
+      case ${line##*[ $TAB]} in (*[!0-9.,]*) continue; esac
+      case $line in
+        [Rr]eal[\ $TAB]*)
+          eval "$1_real=\"\${line##*[ \$TAB]}\"";;
+        [Uu]ser[\ $TAB]*)
+          eval "$1_user=\"\${line##*[ \$TAB]}\"";;
+        [Ss]ys[\ $TAB]*)
+          eval "$1_sys=\"\${line##*[ \$TAB]}\"";;
+        [Ss]ystem[\ $TAB]*)
+          eval "$1_sys=\"\${line##*[ \$TAB]}\"";;
+        *) eval "$1_${line%%[ $TAB]*}=\"\${line##*[ \$TAB]}\"";;
+      esac
     esac
   done < "$2" &&:
   eval "[ \"\$$1_real\" ] && [ \"\$$1_user\" ] && [ \"\$$1_sys\" ]"
