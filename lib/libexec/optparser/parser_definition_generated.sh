@@ -380,7 +380,7 @@ optparser_parse() {
         ;;
       -[wpcqrnxXFLvh]?*) OPTARG=$1; shift
         eval 'set -- "${OPTARG%"${OPTARG#??}"}" -"${OPTARG#??}"' ${1+'"$@"'}
-        [ "$2" = -- ] && set -- "$1" unknown -- && params=x; OPTARG= ;;
+        case $2 in --*) set -- "$1" unknown "$2" && params=x; esac;OPTARG= ;;
       +[wpq]?*) OPTARG=$1; shift
         eval 'set -- "${OPTARG%"${OPTARG#??}"}" +"${OPTARG#??}"' ${1+'"$@"'}
         unset OPTARG ;;
