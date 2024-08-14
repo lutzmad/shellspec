@@ -38,6 +38,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y kcov
+      - name: Make check
+        run: make check
       - name: Run shellspec with coverage
         run: |
           sudo ./shellspec --task fixture:stat:prepare
