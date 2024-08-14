@@ -2,6 +2,16 @@
 
 ShellSpec is a **full-featured [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) unit testing framework** for dash, bash, ksh, zsh and **all POSIX shells** that provides first-class features such as code coverage, mocking, parameterized test, parallel execution and more. It was developed as a dev/test tool for **cross-platform shell scripts and shell script libraries**. ShellSpec is a new modern testing framework released in 2019, but it's already stable enough. With lots of practical CLI features and simple yet powerful syntax, it provides you with a fun shell script test environment.
 
+[![bash](https://img.shields.io/badge/bash-&ge;2.03-lightgrey.svg?style=flat)](https://www.gnu.org/software/bash/)
+[![bosh](https://img.shields.io/badge/bosh-&ge;2018%2F10%2F07-lightgrey.svg?style=flat)](https://codeberg.org/schilytools/schilytools)
+[![busybox](https://img.shields.io/badge/busybox-&ge;1.20.0-lightgrey.svg?style=flat)](https://www.busybox.net/)
+[![dash](https://img.shields.io/badge/dash-&ge;0.5.4-lightgrey.svg?style=flat)](http://gondor.apana.org.au/~herbert/dash/)
+[![ksh](https://img.shields.io/badge/ksh-&ge;93r-lightgrey.svg?style=flat)](https://github.com/ksh93/ksh)
+[![mksh](https://img.shields.io/badge/mksh-&ge;R28-lightgrey.svg?style=flat)](http://www.mirbsd.org/mksh.htm)
+[![posh](https://img.shields.io/badge/posh-&ge;0.3.14-lightgrey.svg?style=flat)](https://salsa.debian.org/clint/posh)
+[![yash](https://img.shields.io/badge/yash-&ge;2.29-lightgrey.svg?style=flat)](https://magicant.github.io/yash/)
+[![zsh](https://img.shields.io/badge/zsh-&ge;3.1.9-lightgrey.svg?style=flat)](https://www.zsh.org/)<br>
+
 [![Ubuntu](https://img.shields.io/github/actions/workflow/status/shellspec/shellspec/ubuntu-jammy.yml?label=Ubuntu&style=flat-square)](https://github.com/shellspec/shellspec/actions/workflows/ubuntu-jammy.yml)
 [![macOS](https://img.shields.io/github/actions/workflow/status/shellspec/shellspec/macos-sonoma.yml?label=macOS&style=flat-square)](https://github.com/shellspec/shellspec/actions/workflows/macos-sonoma.yml)
 [![FreeBSD](https://img.shields.io/github/actions/workflow/status/shellspec/shellspec/freebsd-14.yml?label=FreeBSD&style=flat-square)](https://github.com/shellspec/shellspec/actions/workflows/freebsd-14.yml)
@@ -13,23 +23,11 @@ ShellSpec is a **full-featured [BDD](https://en.wikipedia.org/wiki/Behavior-driv
 [![cygwin](https://img.shields.io/github/actions/workflow/status/shellspec/shellspec/windows-cygwin.yml?label=Windows%20(cygwin)&style=flat-square)](https://github.com/shellspec/shellspec/actions/workflows/windows-cygwin.yml)
 [![msys](https://img.shields.io/github/actions/workflow/status/shellspec/shellspec/windows-msys.yml?label=Windows%20(msys)&style=flat-square)](https://github.com/shellspec/shellspec/actions/workflows/windows-msys.yml)
 [![busybox](https://img.shields.io/github/actions/workflow/status/shellspec/shellspec/windows-busybox.yml?label=Windows%20(busybox)&style=flat-square)](https://github.com/shellspec/shellspec/actions/workflows/windows-busybox.yml)<br>
-[![bash](https://img.shields.io/badge/bash-&ge;2.03-lightgrey.svg?style=flat)](https://www.gnu.org/software/bash/)
-[![bosh](https://img.shields.io/badge/bosh-&ge;2018%2F10%2F07-lightgrey.svg?style=flat)](https://codeberg.org/schilytools/schilytools)
-[![busybox](https://img.shields.io/badge/busybox-&ge;1.20.0-lightgrey.svg?style=flat)](https://www.busybox.net/)
-[![dash](https://img.shields.io/badge/dash-&ge;0.5.4-lightgrey.svg?style=flat)](http://gondor.apana.org.au/~herbert/dash/)
-[![ksh](https://img.shields.io/badge/ksh-&ge;93r-lightgrey.svg?style=flat)](https://github.com/ksh93/ksh)
-[![mksh](https://img.shields.io/badge/mksh-&ge;R28-lightgrey.svg?style=flat)](http://www.mirbsd.org/mksh.htm)
-[![posh](https://img.shields.io/badge/posh-&ge;0.3.14-lightgrey.svg?style=flat)](https://salsa.debian.org/clint/posh)
-[![yash](https://img.shields.io/badge/yash-&ge;2.29-lightgrey.svg?style=flat)](https://magicant.github.io/yash/)
-[![zsh](https://img.shields.io/badge/zsh-&ge;3.1.9-lightgrey.svg?style=flat)](https://www.zsh.org/)
-
-[![Cirrus CI](https://img.shields.io/cirrus/github/shellspec/shellspec.svg?label=CirrusCI&style=flat-square)](https://cirrus-ci.com/github/shellspec/shellspec)
-[![Circle CI](https://img.shields.io/circleci/build/github/shellspec/shellspec.svg?label=CircleCI&style=flat-square)](https://circleci.com/gh/shellspec/shellspec)
-[![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/shellspec/shellspec?style=flat-square&label=DockerHub)![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/shellspec/shellspec?style=flat-square&label=builds)](https://hub.docker.com/r/shellspec/shellspec)
-[![Kcov](https://img.shields.io/badge/dynamic/json.svg?label=Kcov&query=percent_covered&suffix=%25&url=https%3A%2F%2Fcircleci.com%2Fapi%2Fv1.1%2Fproject%2Fgithub%2Fshellspec%2Fshellspec%2Flatest%2Fartifacts%2F0%2Fcoverage%2Fcoverage.json%3Fbranch%3Dmaster&style=flat-square)](https://circleci.com/api/v1.1/project/github/shellspec/shellspec/latest/artifacts/0/coverage/index.html?branch=master)<br>
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/shellspec/shellspec?label=CodeFactor&style=flat-square)](https://www.codefactor.io/repository/github/shellspec/shellspec)
 [![Code Climate](https://img.shields.io/codeclimate/coverage/shellspec/shellspec?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/shellspec/shellspec)
 [![Codecov](https://img.shields.io/codecov/c/github/shellspec/shellspec.svg?label=Codecov&style=flat-square)](https://codecov.io/gh/shellspec/shellspec)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/shellspec/shellspec?label=CodeFactor&style=flat-square)](https://www.codefactor.io/repository/github/shellspec/shellspec)
+[![Kcov](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fshellspec.github.io%2Fshellspec%2Fcoverage.json&query=percent_covered&label=Kcov&suffix=%25&style=flat-square)](https://shellspecy.github.io/shellspec/)<br>
+[![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/shellspec/shellspec?style=flat-square&label=DockerHub)
 [![GitHub top language](https://img.shields.io/github/languages/top/shellspec/shellspec.svg?style=flat-square)](https://github.com/shellspec/shellspec/search?l=Shell)
 [![GitHub release](https://img.shields.io/github/release/shellspec/shellspec.svg?style=flat-square)](https://github.com/shellspec/shellspec/releases/latest)
 [![License](https://img.shields.io/github/license/shellspec/shellspec.svg?style=flat-square)](https://github.com/shellspec/shellspec/blob/master/LICENSE)
