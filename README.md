@@ -26,7 +26,7 @@ ShellSpec is a **full-featured [BDD](https://en.wikipedia.org/wiki/Behavior-driv
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/shellspec/shellspec?label=CodeFactor&style=flat-square)](https://www.codefactor.io/repository/github/shellspec/shellspec)
 [![Code Climate](https://img.shields.io/codeclimate/coverage/shellspec/shellspec?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/shellspec/shellspec)
 [![Codecov](https://img.shields.io/codecov/c/github/shellspec/shellspec.svg?label=Codecov&style=flat-square)](https://codecov.io/gh/shellspec/shellspec)
-[![Kcov](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fshellspec.github.io%2Fshellspec%2Fcoverage.json&query=percent_covered&label=Kcov&suffix=%25&style=flat-square)](https://shellspecy.github.io/shellspec/)<br>
+[![Kcov](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fshellspec.github.io%2Fshellspec%2Fcoverage.json&query=percent_covered&label=Kcov&suffix=%25&style=flat-square)](https://shellspec.github.io/shellspec/)
 [![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/shellspec/shellspec?style=flat-square&label=DockerHub)
 [![GitHub top language](https://img.shields.io/github/languages/top/shellspec/shellspec.svg?style=flat-square)](https://github.com/shellspec/shellspec/search?l=Shell)
 [![GitHub release](https://img.shields.io/github/release/shellspec/shellspec.svg?style=flat-square)](https://github.com/shellspec/shellspec/releases/latest)
