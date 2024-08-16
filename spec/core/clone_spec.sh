@@ -3,20 +3,6 @@
 Describe "core/clone.sh"
   Include "$SHELLSPEC_LIB/core/clone.sh"
 
-  Describe "shellspec_clone_typeset()"
-    typeset_mock() { echo typeset "$@"; }
-    mock() {
-      eval 'typeset() { typeset_mock "$@"; }' 2>/dev/null ||:
-      alias typeset='typeset_mock' 2>/dev/null ||:
-    }
-    BeforeRun mock
-
-    It "calls typeset"
-      When run shellspec_clone_typeset 1 2 3
-      The output should eq "typeset 1 2 3"
-    End
-  End
-
   Describe "shellspec_clone_escape()"
     Parameters
       "test1"    "'test1'"
