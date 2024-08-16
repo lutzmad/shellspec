@@ -20,7 +20,9 @@ shellspec() {
   "$@"
 }
 
-shellspec --banner --output progress --output documentation --output tap --output junit --output failures
+shellspec --version
+shellspec --banner
+shellspec --no-banner --output progress --output documentation --output tap --output junit --output failures
 shellspec --no-banner --skip-message quiet -j 3
 shellspec --no-banner --skip-message quiet $(shellspec --list specfiles | head -n 5)
 shellspec --no-banner --skip-message quiet $(shellspec --list examples:lineno | head -n 5)
