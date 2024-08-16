@@ -747,11 +747,12 @@ shellspec_chomp() {
 
 if [ "${ZSH_VERSION:-}" ]; then
   shellspec_get_nth() {
-    set -- "$1" "$2" "${3#"${3%%[1-9]*}"}" "${4:-}" "$IFS"
+    set -f -- "$1" "$2" "${3#"${3%%[1-9]*}"}" "${4:-}" "$IFS" "$-"
     IFS=${4:-$SHELLSPEC_IFS}
     eval "set -- \"\$@\" \${=2}"
     IFS=$5
-    [ $# -ge $(($3 + 5)) ] && eval "$1=\${$(($3 + 5))}"
+    [ "${6#*f}" = "$6" ] && set +f
+    [ $# -ge $(($3 + 6)) ] && eval "$1=\${$(($3 + 6))}"
   }
 else
   shellspec_get_nth() {
