@@ -587,7 +587,17 @@ shellspec_create_mock_file() {
 }
 
 shellspec_gen_mock_code() {
-  shellspec_putsn "#!$1"
+  # shellcheck disable=SC2295
+  set -- "$1" "${1%%[$SHELLSPEC_IFS]-*}"
+  shellspec_putsn "#!$2"
+  if [ "$1" != "$2" ]; then
+    shellspec_putsn "if [ \"\${SHELLSPEC_EXEC_MOCK:-}\" ]; then"
+    shellspec_putsn "  unset SHELLSPEC_EXEC_MOCK"
+    shellspec_putsn "else"
+    shellspec_putsn "  export SHELLSPEC_EXEC_MOCK=1"
+    shellspec_putsn "  exec $1 \"\$0\" \"\$@\""
+    shellspec_putsn "fi"
+  fi
   shellspec_putsn ". \"\$SHELLSPEC_LIB/general.sh\""
   shellspec_putsn ". \"\$SHELLSPEC_LIB/core/clone.sh\""
   shellspec_putsn "if [ -e \"\$SHELLSPEC_VARS_FILE\" ]; then"
