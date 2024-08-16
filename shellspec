@@ -357,8 +357,13 @@ export SHELLSPEC_PRECHECKER_STATUS="$SHELLSPEC_TMPBASE/.shellspec-prechecker.sta
     warn "Unsupported shell (signal handling broken)."
   fi
 
-  [ "$SHELLSPEC_BUSYBOX_W32" ] && SHELLSPEC_PATHSEP=";"
-  [ "$SHELLSPEC_TTY" ] && SHELLSPEC_DEV_TTY=/dev/tty
+  if [ "$SHELLSPEC_BUSYBOX_W32" ]; then
+    SHELLSPEC_PATHSEP=";"
+  fi
+
+  if [ "$SHELLSPEC_TTY" ]; then
+    SHELLSPEC_DEV_TTY=/dev/tty
+  fi
 }
 
 setup_load_path
