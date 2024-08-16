@@ -23,6 +23,7 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get update
       - run: sudo apt-get install -y ${{ matrix.shells.package }}
       - run: sudo ${{ matrix.shells.shell }} ./shellspec --task fixture:stat:prepare
       - run: SH="${{ matrix.shells.shell }}" contrib/various_test.sh

@@ -13,6 +13,7 @@ jobs:
       !contains(github.event.head_commit.message, 'ci skip')
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get update
       - name: Install packages
         run: sudo apt-get install -y bash kcov
       - name: Install cc-test-reporter
