@@ -38,8 +38,12 @@ shellspec_precheck_loading_error() {
   # TODO abort here in the future
   # [ "$3" ] && echo "$2" > "$3"
   # exec $SHELLSPEC_SHELL -c "exit $2"
-  # shellcheck disable=SC2086
-  exec $SHELLSPEC_SHELL -c 'exit 0'
+  if [ "${ZSH_VERSION:-}" ]; then
+    eval "exec \${=SHELLSPEC_SHELL} -c 'exit 0'"
+  else
+    # shellcheck disable=SC2086
+    exec $SHELLSPEC_SHELL -c 'exit 0'
+  fi
 }
 
 until [ $# -eq 0 ] || [ "$xs" ]; do

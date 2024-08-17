@@ -1,6 +1,8 @@
 #!/bin/sh
 
-set -eu
+set -euf
+
+[ "${ZSH_VERSION:-}" ] && setopt shwordsplit
 
 # gosh: https://github.com/mvdan/sh v3.0.2 fails
 umask >/dev/null
