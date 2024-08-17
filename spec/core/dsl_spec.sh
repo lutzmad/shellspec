@@ -638,7 +638,7 @@ Describe "core/dsl.sh"
 
     It 'is error if something outputs to stderr'
       block() { expectation; echo "error message" >&2; }
-      AfterRun ': > "$SHELLSPEC_LEAK_FILE"'
+      AfterRun ': >| "$SHELLSPEC_LEAK_FILE"'
       When run shellspec_invoke_example
       The stdout line 1 should equal 'EXAMPLE'
       The stdout line 2 should equal 'yield 0'

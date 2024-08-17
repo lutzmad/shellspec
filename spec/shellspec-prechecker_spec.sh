@@ -5,7 +5,7 @@
 
 Describe "shellspec-precheck.sh"
   create_status_file() {
-    echo "$1" > "$FILE"
+    echo "$1" >| "$FILE"
   }
 
   Context "when the precheck callback succeeds"

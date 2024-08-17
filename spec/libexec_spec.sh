@@ -81,7 +81,7 @@ Describe 'libexec.sh'
   End
 
   Describe "edit_in_place()"
-    prepare() { echo foo > "$TMPBASE/edit_in_place"; }
+    prepare() { echo foo >| "$TMPBASE/edit_in_place"; }
     Before prepare
 
     It "edits in place"

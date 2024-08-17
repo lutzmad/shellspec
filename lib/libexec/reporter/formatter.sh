@@ -44,14 +44,14 @@ import_generator() {
   eval "
     ${1}_output='results.${1}'
     ${1}_prepare() {
-      : > \"\$SHELLSPEC_TMPBASE/\$${1}_output\"
+      : >| \"\$SHELLSPEC_TMPBASE/\$${1}_output\"
     }
     ${1}_generate() {
       \"${1}_output\" \"\$@\" >> \"\$SHELLSPEC_TMPBASE/\$${1}_output\"
     }
     ${1}_cleanup() {
       remove_escape_sequence < \"\$SHELLSPEC_TMPBASE/\$${1}_output\" \
-        > \"\$SHELLSPEC_REPORTDIR/\$${1}_output\"
+        >| \"\$SHELLSPEC_REPORTDIR/\$${1}_output\"
     }
   "
   import_formatter "$1"

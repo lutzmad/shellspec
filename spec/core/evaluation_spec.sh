@@ -9,7 +9,7 @@ Describe "core/evaluation.sh"
   Before 'VAR=123'
 
   Describe 'shellspec_evaluation_from_tty()'
-    prepare() { echo "tty data" > "$SHELLSPEC_STDIN_DEV"; }
+    prepare() { echo "tty data" >| "$SHELLSPEC_STDIN_DEV"; }
     BeforeRun 'SHELLSPEC_STDIN_DEV="$TMPBASE/tty"' prepare
     It "reads from tty"
       When run shellspec_evaluation_from_tty cat
@@ -18,7 +18,7 @@ Describe "core/evaluation.sh"
   End
 
   Describe "shellspec_evaluation_from_tty() with 'When I' statement"
-    prepare() { echo "tty data" > "$SHELLSPEC_STDIN_DEV"; }
+    prepare() { echo "tty data" >| "$SHELLSPEC_STDIN_DEV"; }
     BeforeRun 'SHELLSPEC_STDIN_DEV="$TMPBASE/tty"' prepare
     It "reads from tty"
         When I run shellspec_evaluation_from_tty cat
@@ -27,7 +27,7 @@ Describe "core/evaluation.sh"
   End
 
   Describe 'shellspec_evaluation_from_stdin()'
-    prepare() { echo "stdin data" > "$SHELLSPEC_STDIN_FILE"; }
+    prepare() { echo "stdin data" >| "$SHELLSPEC_STDIN_FILE"; }
     BeforeRun 'SHELLSPEC_STDIN_FILE="$TMPBASE/stdin"' prepare
     It "reads from tty"
       When run shellspec_evaluation_from_stdin cat

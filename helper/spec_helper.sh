@@ -93,7 +93,7 @@ spec_helper_configure() {
   set_fd() {
     SHELLSPEC_STDIO_FILE_BASE=$SHELLSPEC_WORKDIR
     if "fd$1" > /dev/null; then
-      "fd$1" > "$SHELLSPEC_STDIO_FILE_BASE.fd-$1"
+      "fd$1" >| "$SHELLSPEC_STDIO_FILE_BASE.fd-$1"
     else
       @rm -f "$SHELLSPEC_STDIO_FILE_BASE.fd-$1"
     fi

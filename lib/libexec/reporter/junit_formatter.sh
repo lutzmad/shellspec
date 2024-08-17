@@ -13,6 +13,7 @@ junit_begin() {
   xmlattrs _attrs "name=$SHELLSPEC_PROJECT_NAME"
   junit '=' '<?xml version="1.0" encoding="UTF-8"?>'
   junit '+=' "${LF}<testsuites $_attrs>${LF}"
+  : <> "$SHELLSPEC_TMPBASE/${junit_output}.work"
   junit '>>>' >> "$SHELLSPEC_TMPBASE/${junit_output}.work"
 }
 

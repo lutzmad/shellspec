@@ -16,7 +16,7 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-[ -s "$status_file" ] && : > "$status_file"
+[ -s "$status_file" ] && : >| "$status_file"
 
 if [ $# -gt 0 ]; then
   for i in "$@"; do
@@ -36,7 +36,7 @@ shellspec_precheck_loading_error() {
   echo "the function ${1}_loaded or ${1}_configure (recommended)."
   echo "The process will continue for compatibility, but will abort here in the future."
   # TODO abort here in the future
-  # [ "$3" ] && echo "$2" > "$3"
+  # [ "$3" ] && echo "$2" >| "$3"
   # exec $SHELLSPEC_SHELL -c "exit $2"
   if [ "${ZSH_VERSION:-}" ]; then
     eval "exec \${=SHELLSPEC_SHELL} -c 'exit 0'"
@@ -58,5 +58,5 @@ until [ $# -eq 0 ] || [ "$xs" ]; do
   shift 4
 done
 
-[ "$xs" ] && [ "$3" ] && echo "$xs" > "$3"
+[ "$xs" ] && [ "$3" ] && echo "$xs" >| "$3"
 exit "${xs:-0}"

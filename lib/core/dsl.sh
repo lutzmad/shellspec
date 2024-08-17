@@ -240,8 +240,8 @@ shellspec_invoke_example() {
     fi
     shellspec_output_if PENDING ||:
     case $# in
-      0) shellspec_yield 2>"$SHELLSPEC_LEAK_FILE" ;;
-      *) shellspec_yield "$@" 2>"$SHELLSPEC_LEAK_FILE" ;;
+      0) shellspec_yield 2>|"$SHELLSPEC_LEAK_FILE" ;;
+      *) shellspec_yield "$@" 2>|"$SHELLSPEC_LEAK_FILE" ;;
     esac
     if ! shellspec_call_after_hooks EACH; then
       shellspec_output AFTER_EACH_ERROR
@@ -400,7 +400,7 @@ shellspec_assert() {
     *) eval "set -- +e ${1+\"\$@\"}" ;;
   esac
   set +e
-  ( set -e; shift; "$@" </dev/null 2>"$SHELLSPEC_ASSERT_STDERR_FILE" )
+  ( set -e; shift; "$@" </dev/null 2>|"$SHELLSPEC_ASSERT_STDERR_FILE" )
   set "$1" -- $?
 
   if [ "$1" -eq 0 ]; then
@@ -475,7 +475,8 @@ shellspec_pending() {
 shellspec_logger() {
   shellspec_sleep 0
   if [ "$SHELLSPEC_LOGFILE" ]; then
-    shellspec_putsn "$@" >>"$SHELLSPEC_LOGFILE"
+    : <> "$SHELLSPEC_LOGFILE"
+    shellspec_putsn "$@" >> "$SHELLSPEC_LOGFILE"
   else
     shellspec_putsn "$@"
   fi
@@ -483,7 +484,8 @@ shellspec_logger() {
 
 shellspec_deprecated() {
   set -- "${SHELLSPEC_SPECFILE:-}:${SHELLSPEC_LINENO:-$SHELLSPEC_LINENO_BEGIN}" "$@"
-  shellspec_putsn "$@" >>"$SHELLSPEC_DEPRECATION_LOGFILE"
+  : <> "$SHELLSPEC_DEPRECATION_LOGFILE"
+  shellspec_putsn "$@" >> "$SHELLSPEC_DEPRECATION_LOGFILE"
 }
 
 shellspec_intercept() {
@@ -567,6 +569,7 @@ shellspec_dump_file() {
 
 shellspec_preserve() {
   [ $# -eq 0 ] && return 0
+  : <> "$SHELLSPEC_VARS_FILE"
   shellspec_clone "$@" >> "$SHELLSPEC_VARS_FILE"
 }
 
@@ -605,6 +608,7 @@ shellspec_gen_mock_code() {
   shellspec_putsn "fi"
   shellspec_putsn "shellspec_preserve() {"
   shellspec_putsn "  [ \$# -eq 0 ] && return 0"
+  shellspec_putsn "  : <> \"\$SHELLSPEC_VARS_FILE\""
   shellspec_putsn "  shellspec_clone \"\$@\" >> \"\$SHELLSPEC_VARS_FILE\""
   shellspec_putsn "}"
   shellspec_cat

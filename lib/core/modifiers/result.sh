@@ -38,7 +38,7 @@ shellspec_modifier_result_invoke() {
     ( "$SHELLSPEC_SUBJECT" "$@" < "$SHELLSPEC_STDOUT_FILE" )
   else
     ( "$SHELLSPEC_SUBJECT" "$@" < /dev/null )
-  fi >"$SHELLSPEC_RESULT_STDOUT_FILE" 2>"$SHELLSPEC_RESULT_STDERR_FILE" &&:
+  fi >|"$SHELLSPEC_RESULT_STDOUT_FILE" 2>|"$SHELLSPEC_RESULT_STDERR_FILE" &&:
   set -- "$?"
   [ -s "$SHELLSPEC_RESULT_STDERR_FILE" ] || return "$1"
   shellspec_output RESULT_WARN "$1" "$SHELLSPEC_RESULT_STDERR_FILE"

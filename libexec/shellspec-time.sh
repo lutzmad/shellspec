@@ -176,7 +176,7 @@ detect_time_type
       esac
     fi
     if [ "${SHELLSPEC_TIME_LOG:+x}" ]; then
-      exec 2>"$SHELLSPEC_TIME_LOG"
+      exec 2>|"$SHELLSPEC_TIME_LOG"
     fi
     echo "real:${real:-0} user:$user sys:$sys type:$type" >&2
     exit "${ex:-1}"

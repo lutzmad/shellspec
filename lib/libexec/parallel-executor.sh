@@ -11,9 +11,9 @@ worker() {
     ( mkdir "$jobfile.lock" ) 2>/dev/null || return 0
     IFS= read -r specfile < "$jobfile.job"
     translator --no-metadata --no-finished --spec-no="$1" "$specfile" \
-      | $SHELLSPEC_SHELL >"$jobfile.stdout" 2>"$jobfile.stderr" &&:
-    echo "$?" > "$jobfile.status"
-    : > "$jobfile.done"
+      | $SHELLSPEC_SHELL >|"$jobfile.stdout" 2>|"$jobfile.stderr" &&:
+    echo "$?" >| "$jobfile.status"
+    : >| "$jobfile.done"
   }
   sequence job 1 "$2"
 }
@@ -41,7 +41,7 @@ executor() {
 
   specfile() {
     jobs=$(($jobs + 1))
-    putsn "$1" > "$SHELLSPEC_JOBDIR/$jobs.job"
+    putsn "$1" >| "$SHELLSPEC_JOBDIR/$jobs.job"
   }
   eval find_specfiles specfile ${1+'"$@"'}
   create_workdirs "$jobs"

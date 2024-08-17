@@ -4,7 +4,10 @@
 
 prepare() { @rm -f "$MARK_FILE"; }
 clean() { @rm "$MARK_FILE"; }
-append() { %printf ' ' >> "$MARK_FILE"; }
+append() {
+  : <> "$MARK_FILE"
+  %printf ' ' >> "$MARK_FILE"
+}
 BeforeAll 'prepare'
 
 Describe 'BeforeEach / AfterEach hook'

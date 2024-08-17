@@ -17,17 +17,17 @@ shellspec_evaluation_to_null() {
   "$@" > /dev/null
 }
 shellspec_evaluation_to_stdout() {
-  "$@" > "$SHELLSPEC_STDOUT_FILE"
+  "$@" >| "$SHELLSPEC_STDOUT_FILE"
 }
 shellspec_evaluation_to_stderr() {
-  "$@" 2> "$SHELLSPEC_STDERR_FILE"
+  "$@" 2>| "$SHELLSPEC_STDERR_FILE"
 }
 shellspec_evaluation_to_xtrace() {
   # shellcheck disable=SC2153
   set -- "$SHELLSPEC_XTRACEFD" SHELLSPEC_XTRACE_FILE "$@"
   SHELLSPEC_EVAL="
     shellspec_evaluation_to_xtrace_() { \
-      exec $1>\"\$$2\"; \"\$@\"; set -- \$?; exec $1>&-; return \"\$1\"; \
+      exec $1>|\"\$$2\"; \"\$@\"; set -- \$?; exec $1>&-; return \"\$1\"; \
     }
   "
   eval "$SHELLSPEC_EVAL"
@@ -57,8 +57,8 @@ shellspec_evaluation_execute() {
 shellspec_invoke_data() {
   [ "$SHELLSPEC_DATA" ] || return 0
   case $# in
-    0) shellspec_data > "$SHELLSPEC_STDIN_FILE" ;;
-    *) shellspec_data "$@" > "$SHELLSPEC_STDIN_FILE" ;;
+    0) shellspec_data >| "$SHELLSPEC_STDIN_FILE" ;;
+    *) shellspec_data "$@" >| "$SHELLSPEC_STDIN_FILE" ;;
   esac
 }
 
@@ -107,7 +107,7 @@ shellspec_evaluation_run_subshell_() {
 
 shellspec_evaluation_run_trap_exit_status() {
   SHELLSPEC_ZSH_EXIT_CODES="$SHELLSPEC_STDIO_FILE_BASE.exit_codes"
-  : > "$SHELLSPEC_ZSH_EXIT_CODES"
+  : >| "$SHELLSPEC_ZSH_EXIT_CODES"
 
   case $- in
     *e*) set +e -- -e "$@" ;;

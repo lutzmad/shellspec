@@ -7,7 +7,7 @@ interrupt=''
 "$SHELLSPEC_TRAP" '[ "$interrupt" ] && exit 130; interrupt=1' INT
 "$SHELLSPEC_TRAP" '' TERM
 
-echo $$ > "$SHELLSPEC_REPORTER_PID"
+echo $$ >| "$SHELLSPEC_REPORTER_PID"
 
 # shellcheck source=lib/libexec/reporter.sh
 . "${SHELLSPEC_LIB:-./lib}/libexec/reporter.sh"
@@ -177,7 +177,7 @@ if [ -e "$SHELLSPEC_QUICK_FILE" ] && [ ! "$interrupt" ]; then
   if [ -s "$quick_file" ] && [ ! "$quick_file_data" ]; then
     notice "All examples have been passed. Rerun to prevent regression.$LF"
   fi
-  puts "$quick_file_data${quick_file_data:+"$LF"}" | sort > "$quick_file"
+  puts "$quick_file_data${quick_file_data:+"$LF"}" | sort >| "$quick_file"
 fi
 
 if [ -e "$SHELLSPEC_DEPRECATION_LOGFILE" ]; then

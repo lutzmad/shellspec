@@ -3,16 +3,16 @@
 
 set -eu
 
-: > "$SHELLSPEC_PROFILER_LOG"
+: >| "$SHELLSPEC_PROFILER_LOG"
 
 index=0 counter=0
 
-: > "$SHELLSPEC_PROFILER_SIGNAL"
+: >| "$SHELLSPEC_PROFILER_SIGNAL"
 
 while [ -e "$SHELLSPEC_PROFILER_SIGNAL" ]; do
   if [ -s "$SHELLSPEC_PROFILER_SIGNAL" ]; then
     eval "counter${index}=$counter index=$(($index + 1))"
-    : > "$SHELLSPEC_PROFILER_SIGNAL"
+    : >| "$SHELLSPEC_PROFILER_SIGNAL"
   fi
   counter=$(($counter + 1))
 done
@@ -24,5 +24,5 @@ while [ "$i" -lt "$index" ]; do
   echo "$(($end - $start))" >> "$SHELLSPEC_PROFILER_LOG"
   i=$(($i + 2))
 done
-echo "$counter" > "$SHELLSPEC_PROFILER_LOG.total"
-: > "$SHELLSPEC_TMPBASE/profiler.done"
+echo "$counter" >| "$SHELLSPEC_PROFILER_LOG.total"
+: >| "$SHELLSPEC_TMPBASE/profiler.done"

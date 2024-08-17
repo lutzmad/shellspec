@@ -5,7 +5,10 @@
 BeforeAll 'var=0'
 Describe 'BeforeAll / AfterAll hook'
   prepare() { @rm -f "$MARK_FILE"; }
-  append() { %printf ' ' >> "$MARK_FILE"; }
+  append() {
+    : <> "$MARK_FILE"
+    %printf ' ' >> "$MARK_FILE"
+  }
   clean() { @rm "$MARK_FILE"; }
 
   BeforeAll 'prepare'

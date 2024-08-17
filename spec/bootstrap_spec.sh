@@ -58,7 +58,7 @@ Describe 'bootstrap.sh'
     fake_profiler() {
       (
         while [ ! -s "$SIGNAL" ]; do :; done
-        : > "$SIGNAL"
+        : >| "$SIGNAL"
       ) &
     } 2>/dev/null
     Before fake_profiler

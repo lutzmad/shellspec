@@ -122,7 +122,7 @@ fi
 
 if [ "$SHELLSPEC_QUICK" ]; then
   if ! [ -e "$SHELLSPEC_QUICK_FILE" ]; then
-    if ( : > "$SHELLSPEC_QUICK_FILE" ) 2>/dev/null; then
+    if ( : >| "$SHELLSPEC_QUICK_FILE" ) 2>/dev/null; then
       warn "Quick Mode is automatically enabled." \
         "If you want disable it, delete '$SHELLSPEC_QUICK_FILE'."
     else
@@ -169,7 +169,7 @@ if [ "$SHELLSPEC_KEEP_TMPDIR" ]; then
 fi
 
 noexec_check="$SHELLSPEC_TMPBASE/.shellspec-check-executable"
-echo '#!/bin/sh' > "$noexec_check"
+echo '#!/bin/sh' >| "$noexec_check"
 "$SHELLSPEC_CHMOD" +x "$noexec_check"
 if ! "$noexec_check" 2>/dev/null; then
   export SHELLSPEC_NOEXEC_TMPDIR=1
@@ -188,7 +188,7 @@ fi
 if [ "${SHELLSPEC_RANDOM:-}" ]; then
   export SHELLSPEC_LIST="$SHELLSPEC_RANDOM"
   exec="$SHELLSPEC_LIBEXEC/shellspec-list.sh"
-  eval "$SHELLSPEC_SHELL" "\"$exec\"" ${1+'"$@"'} >"$SHELLSPEC_INFILE"
+  eval "$SHELLSPEC_SHELL" "\"$exec\"" ${1+'"$@"'} >|"$SHELLSPEC_INFILE"
   set -- -
 fi
 

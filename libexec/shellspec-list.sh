@@ -88,5 +88,5 @@ fi
 [ "$SHELLSPEC_LIST" ] || echo "$specfiles ${examples:-0}"
 
 if [ "${SHELLSPEC_COUNT_FILE:-}" ]; then
-  echo "$specfiles${examples:+ }$examples" > "$SHELLSPEC_COUNT_FILE"
+  echo "$specfiles${examples:+ }$examples" >| "$SHELLSPEC_COUNT_FILE"
 fi
